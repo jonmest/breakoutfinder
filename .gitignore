@@ -3,3 +3,4 @@ nyse
 csv/*
 img/*
 interactive/*
+*__pycache*
