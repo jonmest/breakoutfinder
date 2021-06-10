@@ -1,6 +1,12 @@
 nasdaq
 nyse
-csv/*
-img/*
-interactive/*
 *__pycache*
+
+csv/*
+!csv/.gitkeep 
+
+img/*
+!img/.gitkeep 
+
+interactive/*
+!interactive/.gitkeep 

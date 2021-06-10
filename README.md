@@ -5,6 +5,7 @@ As of now, the criteria for a breakout are defined "config.yaml". There are some
 
 # Requirements
 Python 3.8 - It might work with older Python 3 versions, but not tested.
+
 Pip
 
 The script has only been tested on Ubuntu, but feel free to test it on other distros or Windows/MacOS and tell me how it works.
