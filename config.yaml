@@ -45,3 +45,6 @@ exports: [img, interactive]
 imgFolder: img
 csvFolder: csv
 interactiveChartFolder: interactive
+
+# Which exchanges to save stock data from and analyse
+exchanges: [nasdaq, nyse]

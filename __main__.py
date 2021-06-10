@@ -36,7 +36,7 @@ console.print(download_data_message, style="yellow")
 download_yahoo = input("Y/n: ")
 if download_yahoo.lower() != "n" and download_yahoo.lower() != "no":
   with console.status("[bold green]Downloading data from Yahoo Finance...") as status:
-    download_data(['nasdaq', 'nyse'])
+    download_data(config['exchanges'])
 else:
   console.print(data_required_message, style="red")
   sys.exit()
@@ -55,7 +55,7 @@ if search_now.lower() != "n" and search_now.lower() != "no":
       callbacks.append(export_csv)
       
   find_breakouts(
-    ["nasdaq", "nyse"],
+    config['exchanges'],
     config,
     callbacks
     )
