@@ -20,7 +20,7 @@ def export_csv (df, ticker, breakout_number):
 def export_static_chart (df, ticker, breakout_number, dpi=250):
   mpf.plot(df,type='candle', volume=True, 
            savefig=dict(fname="{}/{}-{}.png".format(IMG_FOLDER, ticker, breakout_number),
-           dpi=dpi,pad_inches=0.25))
+           dpi=dpi,pad_inches=0.25), title="{} {}".format(ticker, df.index[0]))
   
 def export_interactive(df, ticker, breakout_number):
   fig = make_subplots(rows=2, cols=1, 
