@@ -1,5 +1,5 @@
 from src.util import walk_through_directories
-from export import export_interactive, export_static_chart, export_csv
+from src.export import export_interactive, export_static_chart, export_csv
 
 # The minimimum period the breakout should
 # Hold without falling
@@ -32,7 +32,5 @@ config = {
     'n_preceeding_days': n_preceeding_days
 }
 
-def find_breakouts(directories, callbacks):
-    callbacks = [export_static_chart, export_interactive]
-
+def find_breakouts(directories, config, callbacks):
     walk_through_directories(directories, config, callbacks)

@@ -1,0 +1,47 @@
+---
+# Before a breakout, there is consolidation.
+# i.e. the price fluctuates in a certain range.
+# What's the minimum number of days the stock
+# needs to have done this before the breakout?
+min_consolidation_period: 9
+
+# What's the maximum range during consolidation?
+# i.e. how tight should the consolidation be before breakout?
+# During the analysis this is computed by looking at the
+# percentage difference between the highest and lowest bar
+# during consolidation.
+# Answer in percent. The default is 5 percent.
+maximum_consolidation_range: 5
+
+# How high above the maximum bar during consolidation
+# should the price go to be considered a breakout?
+# Answer in percent. The default is 10 percent.
+min_increase_from_range: 10
+
+# For how many days after the range break should the
+# price hold to be considered by the script?
+# Example: The default min_increase_from_range is 10, and
+# default min_breakout_hold is 5. This means that the average
+# close of the last 5 days should be at least 10 percent above
+# the max bar during consolidation.
+min_breakout_hold: 5
+
+# This setting only decides how many days before the breakout
+# to include in the charts and CSVs.
+n_preceeding_days: 65
+
+# Hw many days after the breakout
+# to include in the charts and CSVs.
+n_succeeding_days: 10
+
+# What to export the breakouts into.
+# Options: 
+# "img" (static image)
+# "interactive" (interactive HTML chart)
+# "csv" (CSV file with trading data)
+exports: [img, interactive]
+
+# Which folders to save breakouts to.
+imgFolder: img
+csvFolder: csv
+interactiveChartFolder: interactive

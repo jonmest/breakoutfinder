@@ -12,7 +12,7 @@ def download_data(indices):
       if os.path.exists('{}/{}.csv'.format(index, ticker)):
         pass
       else:
-        d = get_price_history("{}.DE".format(ticker))
+        d = get_price_history(ticker)
         if df.empty:
           df.drop(i)
         d.to_csv('{}/{}.csv'.format(index, ticker))

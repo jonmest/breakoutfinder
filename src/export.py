@@ -5,13 +5,17 @@ import mplfinance as mpf
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime
+import yaml
 
-IMG_FOLDER = 'img'
-INTERACTIVE_FOLDER = 'interactive'
-CSV_FOLDER = 'csv'
+config_file = open("config.yaml", "r")
+config = yaml.safe_load(config_file)
+
+IMG_FOLDER = config['imgFolder']
+INTERACTIVE_FOLDER = config['interactiveChartFolder']
+CSV_FOLDER = config['csvFolder']
 
 def export_csv (df, ticker, breakout_number):
-  breakout.to_csv("{}/{}-{}.csv".format(CSV_FOLDER, ticker, breakout_number), header=True)
+  df.to_csv("{}/{}-{}.csv".format(CSV_FOLDER, ticker, breakout_number), header=True)
 
 def export_static_chart (df, ticker, breakout_number, dpi=250):
   mpf.plot(df,type='candle', volume=True, 

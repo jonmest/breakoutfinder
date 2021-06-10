@@ -1,9 +1,13 @@
 from rich.console import Console
 from rich.markdown import Markdown
 from src.build_dataset import download_data
+from src.saveBreakouts import find_breakouts
+from src.export import export_interactive, export_static_chart, export_csv
+import yaml
 import sys
-from saveBreakouts import find_breakouts
-from export import export_interactive, export_static_chart, export_csv
+
+config_file = open("config.yaml", "r")
+config = yaml.safe_load(config_file)
 
 welcome = """[bold]Welcome to breakoutfinder![/bold]\r
 This is a little tool for helping you find breakouts from the past and view them in static or \
@@ -41,9 +45,19 @@ console.print(find_breakouts_message, style="yellow")
 search_now = input("Y/n: ")
 
 if search_now.lower() != "n" and search_now.lower() != "no":
+  callbacks = []
+  for exp in config['exports']:
+    if exp == "img":
+      callbacks.append(export_static_chart)
+    elif exp == "interactive":
+      callbacks.append(export_interactive)
+    elif exp == "csv":
+      callbacks.append(export_csv)
+      
   find_breakouts(
-    ["nasdaq", "nyse"], 
-    [export_static_chart, export_interactive]
+    ["nasdaq", "nyse"],
+    config,
+    callbacks
     )
 else:
   console.print("Okay! Then there's nothing more to do. This program will now stop.",

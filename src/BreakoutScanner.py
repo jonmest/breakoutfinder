@@ -9,7 +9,8 @@ class BreakoutScanner:
                min_consolidation_period = 9,
                maximum_consolidation_range = 5,
                min_increase_from_range = 10,
-               n_preceeding_days = 65
+               n_preceeding_days = 65,
+               n_succeeding_days = 10
                ):
     self.history = df
     self.min_breakout_hold = min_breakout_hold
@@ -17,7 +18,7 @@ class BreakoutScanner:
     self.maximum_consolidation_range = maximum_consolidation_range
     self.min_increase_from_range = min_increase_from_range
     self.n_preceeding_days = n_preceeding_days
-    
+    self.n_succeeding_days = n_succeeding_days
     
   def is_consolidating(self, current_df):
     recent_candlesticks = current_df[-self.min_consolidation_period:]
@@ -41,17 +42,6 @@ class BreakoutScanner:
         return True
       
     return False
-  # def is_breaking_out(self, df, window, max_range, percentage=5):
-  #   #last_close = df[-1:]['Close'].values[0]
-  #   last_close = df[-1:-4]['Close'].mean()
-    
-  #   treshold = 1 + (percentage / 100)
-  #   if self.is_consolidating(df[:-1], window, max_range):
-  #     recent_closes = df[-16:-1]
-  #     if last_close > (recent_closes['Close'].max() * treshold):
-  #       return True
-    
-  #   return False
 
   def get_breakouts(self, percentage, window, max_range):
     df = self.history    
@@ -59,14 +49,14 @@ class BreakoutScanner:
 
     for i in range((self.min_consolidation_period + 1), len(df)):
       current_window = df[i-self.min_consolidation_period:i-1]
-      ahead_window = df[i:i+5]
+      ahead_window = df[i:i+self.min_breakout_hold]
       
       if self.is_breaking_out(current_window, ahead_window):
         breakout_day = df[['Close']].iloc[[i-1]].values[0][0]
         preceding_day = df[['Close']].iloc[[i-2]].values[0][0]
         
         to_return.append(
-            df[['Close', 'Open', 'Low', 'High', 'Volume']][i-65:i+10]
+            df[['Close', 'Open', 'Low', 'High', 'Volume']][i-self.n_preceeding_days:i+self.n_succeeding_days]
           )
         
     return to_return
