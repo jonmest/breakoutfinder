@@ -42,7 +42,7 @@ def find_breakouts (directories, config, callbacks):
                             config['maximum_consolidation_range'], 
                             config['min_increase_from_range'], 
                             config['n_preceeding_days'])
-        breakouts = bs.get_breakouts(5, 10, 5)
+        breakouts = bs.get_breakouts()
         
         for i, breakout in enumerate(breakouts):
           if breakout.empty:

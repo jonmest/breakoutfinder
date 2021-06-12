@@ -43,7 +43,7 @@ class BreakoutScanner:
       
     return False
 
-  def get_breakouts(self, percentage, window, max_range):
+  def get_breakouts(self):
     df = self.history    
     to_return = []
 
