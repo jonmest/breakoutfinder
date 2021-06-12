@@ -15,7 +15,7 @@ from rich.console import Console
 
 console = Console()
     
-def walk_through_directories (directories, config, callbacks):
+def find_breakouts (directories, config, callbacks):
   with console.status("[bold green]Looking for breakouts...") as status:
     for directory in directories:
       for file in glob.glob("{}/*.csv".format(directory)):
