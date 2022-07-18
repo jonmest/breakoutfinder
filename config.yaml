@@ -48,3 +48,8 @@ interactiveChartFolder: interactive
 
 # Which exchanges to save stock data from and analyse
 exchanges: [nasdaq, nyse]
+
+data_download: "zip"
+app_data_dir: /home/t/breakoutfinder/appData
+stock_data_dir: /home/t/breakoutfinder/stockData
+breakout_data_dir: /home/t/breakoutfinder/breakoutData
