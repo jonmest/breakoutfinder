@@ -81,6 +81,8 @@ class BreakoutScanner:
         # this blocks until the process terminates
 
         for breakout_index in breakouts_indices:
+            if df["Close"].values[breakout_index-2] >= df["Close"].values[breakout_index+2]:
+                continue
             to_return.append(
                 df[['Close', 'Open', 'Low', 'High', 'Volume']][
                   breakout_index - self.n_preceeding_days: breakout_index + self.n_succeeding_days]
