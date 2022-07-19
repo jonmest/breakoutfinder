@@ -1,4 +1,5 @@
 from multiprocessing import Queue, Process
+from queue import Empty
 
 import numpy as np
 import pandas as pd
@@ -69,8 +70,11 @@ class BreakoutScanner:
         queue = Queue()
         p = Process(target=find_breakouts_wrapper, args=(queue, df))
         p.start()
-        breakouts_indices = queue.get(True, 60)
-        p.join(60)
+        try:
+            breakouts_indices = queue.get(True, 60)
+        except Empty:
+            breakouts_indices = []
+        p.join()
         if p.is_alive():
             p.kill()
         #breakouts_indices = find_breakouts_wrapper(df)
